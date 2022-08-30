@@ -1,8 +1,9 @@
 @extends('layout.principal')
-@section('title','Página Principal')
+@section('title','Produto')
 @section('content')
     @if($product)
         <div class="container ">
+            
             @foreach ($product as $productData)
                 <h1 class="display-5">
                     {{$productData->name}}<small class="fs-6"> / {{str_replace(",", ", ",$productData->categories)}}</small>
@@ -21,10 +22,11 @@
                     </span>
                 </div>
                 <div>
-                    <a href="javascript:void(0)" class="btn btn-success" role="button">
-                        <i class="fa-solid fa-cart-arrow-down"></i>
+                    <button id="addCart" onclick="InputInCart({{json_encode($product)}},this)" class="btn btn-success" role="button">
+                        <i class="fa-solid fa-cart-arrow-down" id="loading-icon"></i>
                         Adicionar ao Carrinho
-                    </a>
+                    </button>
+                    
                 </div>
             @endforeach
         </div>
@@ -35,5 +37,5 @@
             </h1>
         </div>
     @endif
-    
 @stop
+<script src="{{asset('/js/product/product.js')}}"></script>

@@ -8,6 +8,13 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
+
+    private $order;
+
+    public function __construct(Order $order)
+    {
+        $this->order = $order;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = $this->order->GetAll();
+    
+        return view('orders.index',compact('orders'));
     }
 
     /**

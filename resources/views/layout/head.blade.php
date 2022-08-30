@@ -9,12 +9,19 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('categories')}}">Categorias</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('orders')}}">Pedidos</a>
-          </li>
+          @if(Auth::user())
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('orders')}}">Pedidos</a>
+            </li>
+          @endif
         </ul>
         <div class="d-flex">
-          <a class="nav-link" href="{{route('cart')}}">Carrinho</a>
+            <a class="nav-link text-muted" href="{{route('cart')}}" title="Ver Carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
+            @if (Auth::user())
+              <a class="nav-link text-muted" href="{{route('logout')}}" title="Logout">Logout {{Auth::user()->name}}</a>
+            @else
+              <a class="nav-link text-muted" href="{{route('login')}}" title="Fazer Login">Login</a>    
+            @endif
         </div>
       </div>
     </div>

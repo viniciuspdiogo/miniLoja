@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('order_products');
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_order');
+            $table->unsignedBigInteger('id_product');
+            $table->foreign('id_order')->references('id')->on('orders');
+            $table->foreign('id_product')->references('id')->on('products');
             $table->timestamps();
         });
     }

@@ -2,30 +2,12 @@
 @section('title','Carrinho')
 @section('content')
 <div class="container">
-
+  
   <h1 class="display-5">Carrinho</h1>
   <form action="" method="post">
     
-  <div class="container mb-5 produtos gap-1">
-    <div class="row bg-light border p-4">
-      <div class="col-sm-3">
-          Imagem do Produto
-          <img src="" alt="" srcset="">
-      </div>
-      <div class="col-sm-9 ">
-        <div class="row gap-2">
-          <span class="fs-1 fw-bold">Nome Produto</span>
-          <span class="fs-3">Preço Produto</span>
-          <div class="d-flex">
-            <label class="fs-5">Quant.</label>
-            <input class="form-control" type="number" name="" id="" step="1" min="1" max="100" class="border" style="width: 80px">
-          </div>
-          <div class="col-sm-3">
-            <button type="button" class="btn btn-danger">Remover</button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="container mb-5 gap-1" id="produtos">
+    
   </div>
 
   {{-- AREA DO ENDEREÇO --}}
@@ -75,3 +57,4 @@
   </form>
 </div>
 @stop
+<script src="{{asset('/js/cart/cart.js')}}"></script>

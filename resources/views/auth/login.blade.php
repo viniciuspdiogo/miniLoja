@@ -66,24 +66,25 @@
 <body class="text-center">
         
     <main class="form-signin">
-        <form>
+        <form method="POST" action='{{route('loginUser')}}'>
+            @csrf
             <h1 class="h3 mb-3 fw-normal">Login</h1>
-
+            <a class="text-muted mb-3 d-block" href="{{route('home')}}">Ir para a Louja</a>
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
                 <label for="floatingPassword">Senha</label>
             </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Fazer Login</button>
 
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Manter Conectado
-                </label>
-            </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Fazer Login</button>
+            @foreach ($errors->all() as $error)
+
+              <div class="bg-danger text-white mt-3 rounded">{{ $error }}</div>
+
+            @endforeach
         </form>
     </main>
 </body>

@@ -87,7 +87,7 @@ services:
             - sail
 networks:
     sail:
-        driver: bridge
+        driver: bridge        
 volumes:
     sail-mysql:
         driver: local

@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\OrderException;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\Order;
+use App\Models\{
+    Adress,
+    Order,
+    OrderProducts
+};
+
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class OrderController extends Controller
 {
@@ -45,7 +54,62 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+
+        try {
+       
+            $valueTotal = 0;
+            $products = json_decode($request->product);
+        
+            foreach($products as $product){
+                $valueTotal += $product->price * $product->quant;
+            }
+
+            $codeOrder = uniqid();
+
+            $storeOrderId = $this->order->create([
+                'codeorders' => uniqid(),
+                'valuetotal' => $valueTotal,
+                'id_user' => Auth::user()->id,
+            ])->id;
+
+            if($storeOrderId){
+                $adress = [
+                    'zipcode' => $request->zipcode,
+                    'street' => $request->street,
+                    'number' => $request->number,
+                    'complement' => $request->complement,
+                    'city' => $request->city,
+                    'uf' => $request->uf,
+                    'id_order' => $storeOrderId,
+                ];
+
+                $storeAdress = new Adress();
+                $storeAdress->create([
+                    'zipcode' => $request->zipcode,
+                    'street' => $request->street,
+                    'number' => $request->number,
+                    'complement' => $request->complement,
+                    'city' => $request->city,
+                    'uf' => $request->uf,
+                    'id_order' => $storeOrderId,
+                ])->id;
+                
+                $teste =0;
+                foreach($products as $product){
+                    $teste +=$product->id;
+                    $storeProducts = new OrderProducts();
+                    $storeProducts->create([
+                        'id_order' => $storeOrderId,
+                        'id_product' => $product->id,
+                    ]);
+                }
+            }
+
+            return redirect()->back()->with('message','Compra realizada com Sucesso!');
+
+        } catch (\Throwable $th) {
+            throw new OrderException($message = 'Erro no Processo',1);
+        }
     }
 
     /**

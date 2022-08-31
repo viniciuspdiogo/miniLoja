@@ -22,9 +22,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $search = request('search');
+
+        $products = $search? $this->product->GetSearch($search) : $this->product->GetAll();
         
-        $products = $this->product->GetAll();
-    
         if(isset($products))
         {
             return view('index',compact('products'));

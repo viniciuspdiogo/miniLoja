@@ -16,9 +16,9 @@
             <tbody>
               @foreach ($orders as $order)
                 <tr>
-                  <th scope="row">{{$order->codeorder}}</th>
+                  <th scope="row">{{$order->codeorders}}</th>
                   <td>{{$order->name}}</td>
-                  <td>{{$order->valuetotal}}</td>
+                  <td>R$ {{number_format($order->valuetotal,2,",",".")}}</td>
                   <td>{{$order->created_at}}</td>
                 </tr>
               @endforeach            

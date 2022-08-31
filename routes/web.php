@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['auth', 'auth.session'])->group(function () {
+// Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::get('/pedidos',[OrderController::class,'index'])->name('orders');
-});
+// });
 
 
 Route::get('/', [ProductController::class,'index'])->name('home');
@@ -40,4 +40,4 @@ Route::get('/carrinho',function(){
 
 Route::post('/login',[LoginController::class,'authenticate'])->name('loginUser');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-
+Route::post('/storeorder',[OrderController::class,'store'])->name('storeorder');

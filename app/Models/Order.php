@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['codoerders','valuetotal','id_user'];
+    protected $fillable = ['codeorders','valuetotal','id_user'];
 
 
     public function GetAll()
@@ -29,4 +29,5 @@ class Order extends Model
         return null;
         
     }
+
 }

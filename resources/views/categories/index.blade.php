@@ -1,11 +1,11 @@
 @extends('layout.principal')
-@section('title','Página Principal')
+@section('title','Categorias')
 @section('content')
     @if ($categorys)
         <ul class="list-group">
             @foreach ($categorys as $category)
             <li class="list-group-item">
-                {{$category->name}}
+                <a class="text-muted" href="/?search={{$category->name}}" title="Ver os Produtos">{{$category->name}}</a>
             </li>
             @endforeach
         </ul>   

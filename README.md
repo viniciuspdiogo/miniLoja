@@ -7,58 +7,76 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Rodando o Projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Para executar o Projeto é preciso ter instalado o Docker, de preferência a versão estável.
+Faça o Download do Docker Desktop clicando [aqui].
+Após instalar o Docker e verificar se o mesmo está rodando, basta executar o comando 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+``` sh
+    docker -v
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Você deverá receber no seu terminal a versão do Docker que está sendo executada.
+Após instalar o Docker, é preciso baixar o projeto, para isso é preciso ter instalado o Git, acesse a página do [Git], após a instalação do Git, rode o seguinte comando no seu terminal
 
-## Learning Laravel
+Caso use SSH:
+```sh
+    git clone git@github.com:viniciuspdiogo/miniLoja.git
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Caso use HTTPS:
+```sh
+    git clone https://github.com/viniciuspdiogo/miniLoja.git
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Após baixar o código, iremos dar start no projeto com os seguintes porojetos.
 
-## Laravel Sponsors
+```sh
+    cd pasta-do-projeto/
+    ./vendor/bin/sail up -d
+    ./vendor/bin/sail artisan migrate:refresh --seed
+```
+Caso tudo execute corretamente, você receberá um retorno parecido:
+Rolling back migrations.  
+```sh
+  2022_08_28_002148_create_order_products_table ............................................ 46ms DONE
+  2022_08_27_215813_create_adresses_table .................................................. 42ms DONE
+  2022_08_27_215600_create_orders_table .................................................... 47ms DONE
+  2022_08_27_201130_create_categorys_products_table ........................................ 54ms DONE
+  2022_08_27_195703_create_categories_table ................................................ 38ms DONE
+  2022_08_27_001241_create_table_product ................................................... 44ms DONE
+  2019_12_14_000001_create_personal_access_tokens_table .................................... 48ms DONE
+  2019_08_19_000000_create_failed_jobs_table ............................................... 38ms DONE
+  2014_10_12_100000_create_password_resets_table ........................................... 47ms DONE
+  2014_10_12_000000_create_users_table ..................................................... 36ms DONE
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+   INFO  Running migrations.  
 
-### Premium Partners
+  2014_10_12_000000_create_users_table .................................................... 116ms DONE
+  2014_10_12_100000_create_password_resets_table .......................................... 129ms DONE
+  2019_08_19_000000_create_failed_jobs_table .............................................. 129ms DONE
+  2019_12_14_000001_create_personal_access_tokens_table ................................... 348ms DONE
+  2022_08_27_001241_create_table_product .................................................. 146ms DONE
+  2022_08_27_195703_create_categories_table ............................................... 156ms DONE
+  2022_08_27_201130_create_categorys_products_table ....................................... 471ms DONE
+  2022_08_27_215600_create_orders_table ................................................... 228ms DONE
+  2022_08_27_215813_create_adresses_table ................................................. 244ms DONE
+  2022_08_28_002148_create_order_products_table ........................................... 421ms DONE
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+   INFO  Seeding database.  
 
-## Contributing
+  Database\Seeders\ProductSeeder ............................................................. RUNNING  
+  Database\Seeders\ProductSeeder ...................................................... 118.38 ms DONE  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  Database\Seeders\CategorySeeder ............................................................ RUNNING  
+  Database\Seeders\CategorySeeder ...................................................... 49.88 ms DONE  
 
-## Code of Conduct
+  Database\Seeders\CategorysProductsSeeder ................................................... RUNNING  
+  Database\Seeders\CategorysProductsSeeder ............................................ 211.94 ms DONE  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  Database\Seeders\UserSeeder ................................................................ RUNNING  
+  Database\Seeders\UserSeeder .......................................................... 61.88 ms DONE  
+```
+[aqui]: <https://www.docker.com/>
+[Git]: <https://git-scm.com/downloads>
